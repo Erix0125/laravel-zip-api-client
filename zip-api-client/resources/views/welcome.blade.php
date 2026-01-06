@@ -15,12 +15,12 @@
         <!-- Header Navigation -->
         <header class="border-b border-gray-200 dark:border-gray-700">
             <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <div class="text-2xl font-bold text-gray-900 dark:text-black">
+                <div class="text-2xl font-bold text-gray-900 dark:text-neutral-100">
                     ZIP Manager
                 </div>
                 <div class="flex gap-4 items-center text-black">
                     @if (Route::has('login'))
-                    @auth
+                    @if ($auth->check)
                     <a href="{{ route('dashboard') }}" class="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
                         Dashboard
                     </a>
@@ -31,7 +31,7 @@
                         </button>
                     </form>
                     @else
-                    <a href="{{ route('login') }}" class="px-4 py-2 text-gray-700 dark:text-gray-900 hover:text-gray-400 dark:hover:text-white">
+                    <a href="{{ route('login') }}" class="px-4 py-2 text-gray-700 dark:text-neutral-100 hover:text-gray-400 dark:hover:gray-400">
                         Login
                     </a>
                     @if (Route::has('register'))
@@ -39,7 +39,7 @@
                         Register
                     </a>
                     @endif
-                    @endauth
+                    @endif
                     @endif
                 </div>
             </nav>
