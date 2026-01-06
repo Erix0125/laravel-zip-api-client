@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Exception;
 
 class ZipApiService
@@ -13,8 +13,9 @@ class ZipApiService
 
     public function __construct()
     {
-        $this->baseUrl = config('services.zip_api.base_url') ?? env('API_BASE_URL', 'http://localhost:8080/api');
-        $this->token = Auth::user()?->api_token ?? null;
+        $this->baseUrl = config('services.api.base_url') ?? env('API_BASE_URL', 'http://localhost:8000/api');
+        // Get token from session (stored during API login)
+        $this->token = Session::get('api_token');
     }
 
     /**

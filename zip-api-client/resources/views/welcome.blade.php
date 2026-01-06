@@ -15,10 +15,10 @@
         <!-- Header Navigation -->
         <header class="border-b border-gray-200 dark:border-gray-700">
             <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <div class="text-2xl font-bold text-gray-900 dark:text-white">
+                <div class="text-2xl font-bold text-gray-900 dark:text-black">
                     ZIP Manager
                 </div>
-                <div class="flex gap-4 items-center">
+                <div class="flex gap-4 items-center text-black">
                     @if (Route::has('login'))
                     @auth
                     <a href="{{ route('dashboard') }}" class="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
@@ -31,7 +31,7 @@
                         </button>
                     </form>
                     @else
-                    <a href="{{ route('login') }}" class="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                    <a href="{{ route('login') }}" class="px-4 py-2 text-gray-700 dark:text-gray-900 hover:text-gray-400 dark:hover:text-white">
                         Login
                     </a>
                     @if (Route::has('register'))
@@ -94,7 +94,7 @@
                         Export counties and cities data to CSV or PDF formats.
                     </p>
                     <div class="flex gap-2">
-                        <a href="{{ route('export.counties.csv') }}" class="flex-1 px-4 py-2 bg-green-600 dark:bg-green-600 text-white rounded-lg hover:bg-green-700 text-center text-sm">
+                        <a href="{{ route('export.counties.csv') }}" class="flex-1 px-4 py-2 bg-emerald-600 dark:bg-emerald-600 text-white rounded-lg hover:bg-green-700 text-center text-sm">
                             CSV
                         </a>
                         <a href="{{ route('export.counties.pdf') }}" class="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-center text-sm">

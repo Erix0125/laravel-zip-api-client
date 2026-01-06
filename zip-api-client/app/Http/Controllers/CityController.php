@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Services\ZipApiService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class CityController extends Controller
 {
@@ -40,10 +39,6 @@ class CityController extends Controller
      */
     public function create(int $countyId)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-
         try {
             $counties = $this->zipApi->getCounties();
             $county = collect($counties)->firstWhere('id', $countyId);
@@ -63,10 +58,6 @@ class CityController extends Controller
      */
     public function store(Request $request, int $countyId)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'zip_code' => 'required|string|max:10',
@@ -111,10 +102,6 @@ class CityController extends Controller
      */
     public function edit(int $countyId, int $cityId)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-
         try {
             $counties = $this->zipApi->getCounties();
             $county = collect($counties)->firstWhere('id', $countyId);
@@ -141,10 +128,6 @@ class CityController extends Controller
      */
     public function update(Request $request, int $countyId, int $cityId)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'zip_code' => 'required|string|max:10',
@@ -163,10 +146,6 @@ class CityController extends Controller
      */
     public function destroy(int $countyId, int $cityId)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-
         try {
             $this->zipApi->deleteCity($countyId, $cityId);
             return redirect()->route('cities.index', ['countyId' => $countyId])->with('success', 'City deleted successfully!');

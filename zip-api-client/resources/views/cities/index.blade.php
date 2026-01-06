@@ -5,11 +5,11 @@
                 {{ __('Cities in ' . $county['name']) }}
             </h2>
             <div class="flex gap-2">
-                @auth
+                @if ($auth->check)
                 <a href="{{ route('cities.create', ['countyId' => $countyId]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Add City
                 </a>
-                @endauth
+                @endif
                 <a href="{{ route('export.cities.csv', ['countyId' => $countyId]) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                     Export CSV
                 </a>
@@ -26,7 +26,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if ($errors->any())
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <div class="bg-red-100 border border-red-400 text-red-600 px-4 py-3 rounded mb-4">
                 <ul>
                     @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -36,7 +36,7 @@
             @endif
 
             @if (session('success'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+            <div class="bg-green-100 border border-green-400 text-green-600 px-4 py-3 rounded mb-4">
                 {{ session('success') }}
             </div>
             @endif
@@ -61,7 +61,7 @@
                                 <td class="border px-4 py-2">{{ $city['zip'] }}</td>
                                 <td class="border px-4 py-2">
                                     <a href="{{ route('cities.show', ['countyId' => $countyId, 'cityId' => $city['id']]) }}" class="text-blue-500 hover:underline">View</a>
-                                    @auth
+                                    @if ($auth->check)
                                     | <a href="{{ route('cities.edit', ['countyId' => $countyId, 'cityId' => $city['id']]) }}" class="text-yellow-500 hover:underline">Edit</a>
                                     |
                                     <form method="POST" action="{{ route('cities.destroy', ['countyId' => $countyId, 'cityId' => $city['id']]) }}" style="display:inline;">
@@ -69,7 +69,7 @@
                                         @method('DELETE')
                                         <button type="submit" class="text-red-500 hover:underline" onclick="return confirm('Are you sure?')">Delete</button>
                                     </form>
-                                    @endauth
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

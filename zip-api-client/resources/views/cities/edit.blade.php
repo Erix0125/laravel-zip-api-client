@@ -21,7 +21,7 @@
 
                     <form method="POST" action="{{ route('cities.update', ['countyId' => $countyId, 'cityId' => $city['id']]) }}">
                         @csrf
-                        @method('PUT')
+                        @method('PATCH')
 
                         <div class="mb-4">
                             <label for="name" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
@@ -41,7 +41,7 @@
                             <a href="{{ route('cities.index', ['countyId' => $countyId]) }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                                 Cancel
                             </a>
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            <button type="submit" class="bg-amber-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                                 Update
                             </button>
                         </div>
