@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Services\ZipApiService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class CountyController extends Controller
 {
@@ -33,9 +32,6 @@ class CountyController extends Controller
      */
     public function create()
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
         return view('counties.create');
     }
 
@@ -44,10 +40,6 @@ class CountyController extends Controller
      */
     public function store(Request $request)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-
         $validated = $request->validate([
             'name' => 'required|string|max:255',
         ]);
@@ -103,10 +95,6 @@ class CountyController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-
         $validated = $request->validate([
             'name' => 'required|string|max:255',
         ]);
@@ -124,10 +112,6 @@ class CountyController extends Controller
      */
     public function destroy(string $id)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-
         try {
             $this->zipApi->deleteCounty((int)$id);
             return redirect()->route('counties.index')->with('success', 'County deleted successfully!');
