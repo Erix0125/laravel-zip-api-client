@@ -9,8 +9,18 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="mb-4">
+                    <div class="mb-4 flex justify-between items-center">
                         <a href="{{ route('cities.filter') }}" class="text-blue-500 hover:underline">← Back to Filter</a>
+                        @if(count($cities) > 0 && $auth->check)
+                        <div class="flex gap-2">
+                            <a href="{{ route('export.cities.filtered.csv', ['countyId' => $countyId, 'letter' => $selectedLetter]) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                Export to CSV
+                            </a>
+                            <a href="{{ route('export.cities.filtered.pdf', ['countyId' => $countyId, 'letter' => $selectedLetter]) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                Export to PDF
+                            </a>
+                        </div>
+                        @endif
                     </div>
 
                     @if(count($cities) > 0)
