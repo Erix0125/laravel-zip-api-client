@@ -27,11 +27,18 @@
                         <a href="{{ route('counties.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                             Back
                         </a>
-                        @auth
+                        @if($auth->check)
                         <a href="{{ route('counties.edit', $county['id']) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
                             Edit
                         </a>
-                        @endauth
+                        <form action="{{ route('counties.destroy', $county['id']) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="return confirm('Are you sure you want to delete this county?');">
+                                Delete
+                            </button>
+                        </form>
+                        @endif
                     </div>
                 </div>
             </div>

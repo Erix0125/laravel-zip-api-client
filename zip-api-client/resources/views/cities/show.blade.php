@@ -41,11 +41,18 @@
                         <a href="{{ route('cities.index', ['countyId' => $countyId]) }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                             Back
                         </a>
-                        @auth
+                        @if($auth->check)
                         <a href="{{ route('cities.edit', ['countyId' => $countyId, 'cityId' => $city['id']]) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
                             Edit
                         </a>
-                        @endauth
+                        <form action="{{ route('cities.destroy', ['countyId' => $countyId, 'cityId' => $city['id']]) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="return confirm('Are you sure you want to delete this city?');">
+                                Delete
+                            </button>
+                        </form>
+                        @endif
                     </div>
                 </div>
             </div>
