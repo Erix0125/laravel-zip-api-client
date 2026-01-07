@@ -32,6 +32,8 @@ Route::middleware('api_token')->group(function () {
     Route::get('export/counties/pdf', [ExportController::class, 'countiesPDF'])->name('export.counties.pdf');
     Route::get('export/cities/{countyId}/csv', [ExportController::class, 'citiesCSV'])->name('export.cities.csv');
     Route::get('export/cities/{countyId}/pdf', [ExportController::class, 'citiesPDF'])->name('export.cities.pdf');
+    Route::get('export/cities-filtered/{countyId}/{letter}/csv', [ExportController::class, 'filteredCitiesCSV'])->name('export.cities.filtered.csv');
+    Route::get('export/cities-filtered/{countyId}/{letter}/pdf', [ExportController::class, 'filteredCitiesPDF'])->name('export.cities.filtered.pdf');
 
     // Profile routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
